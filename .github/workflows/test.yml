@@ -29,5 +29,5 @@ jobs:
 
     - name: Test the project
       run: |
-        eldev -p -dtT -C test --expect 20
+        eldev -p -dtT -C test
         eldev -dtT -C compile --set all --warnings-as-errors
