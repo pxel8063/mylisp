@@ -3,7 +3,7 @@
 ;; Copyright (C)   2022 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.0.1
+;; Version:    0.0.2
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "27.1") (org "9.5") (org-roam "2.2.2"))
 
@@ -130,9 +130,9 @@
 
 ;;;###autoload
 (defun sf/myconfig ()
-  "Invoke 'find-file' ~/.emacs.d/README.org."
+  "Invoke 'find-file' ~/.emacs.d/init.el."
   (interactive)
-  (find-file "~/.emacs.d/README.org"))
+  (find-file "~/.emacs.d/init.el"))
 
 ;;;###autoload
 (defun sf/switch-term-buffer ()
