@@ -41,6 +41,12 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+
+(straight-use-package 'leaf)
+(straight-use-package 'leaf-keywords)
+
+(leaf-keywords-init)
+
 (provide 'init)
 ;; Local Variables:
 ;; indent-tabs-mode: nil
