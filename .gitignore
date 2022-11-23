@@ -10,6 +10,9 @@
 # Undo-tree save-files
 *.~undo-tree
 
+# ignore the directory made by straight
+/straight/
+
 # Added automatically by ‘eldev init’.
 /.eldev
 /Eldev-local
