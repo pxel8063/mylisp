@@ -5,7 +5,7 @@
 ;; Author: pxel8063 <pxel8063@gmail.com>
 ;; Version:    0.0.1
 ;; Keywords:   lisp
-;; Package-Requires: ((emacs "27.1"))
+;; Package-Requires: ((emacs "27.1") (leaf "4.5.5") (leaf-keywords "1.1"))
 
 ;; URL: https://github.com/pxel8063/mylisp
 
@@ -41,11 +41,12 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 
 (leaf-keywords-init)
+
+(leaf leaf-convert :straight t)
 
 (provide 'init)
 ;; Local Variables:

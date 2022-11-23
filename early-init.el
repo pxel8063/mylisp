@@ -13,5 +13,6 @@
 ;; So we can detect this having been loaded
 (provide 'early-init)
 
+;; no-byte-compile: t
 ;;; early-init.el ends here
 

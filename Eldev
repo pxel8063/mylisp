@@ -10,3 +10,8 @@
 ;(eldev-use-package-archive 'nongnu-elpa)
 (eldev-use-package-archive 'melpa)
 
+;; need this for byte-compile of leaf macro
+;; see https://doublep.github.io/eldev/#_byte_compiling
+;; section Byte-compiling complicated macros
+(setf eldev-build-load-before-byte-compiling t)
+
