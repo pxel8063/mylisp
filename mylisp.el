@@ -3,7 +3,7 @@
 ;; Copyright (C)   2022 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.0.2
+;; Version:    0.0.3
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "27.1") (org "9.5") (org-roam "2.2.2"))
 
@@ -140,7 +140,7 @@
   (interactive)
     (if (not (get-buffer "*ansi-term*"))
 	(ansi-term (progn (if (string= system-type 'darwin)
-			      "/usr/local/bin/bash"
+			      "fish"
 			    "/bin/bash")))
       (if (not (eq (current-buffer) (get-buffer "*ansi-term*")))
 	  (switch-to-buffer (get-buffer "*ansi-term*"))
