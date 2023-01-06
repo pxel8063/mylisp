@@ -3,7 +3,7 @@
 ;; Copyright (C)   2022 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.0.4
+;; Version:    0.0.5
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "27.1") (org "9.5") (org-roam "2.2.2"))
 
