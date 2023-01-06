@@ -139,7 +139,7 @@
   "Toggle 'ansi-term' buffer and the current buffer."
   (interactive)
   (let ((shell-path))
-    (cond ((file-symlink-p "~/.nix-profile/bin/fish") (setq shell-path "./nix-profile/bin/fish"))
+    (cond ((file-symlink-p "~/.nix-profile/bin/fish") (setq shell-path "~/.nix-profile/bin/fish"))
 	  ((file-exists-p "/usr/local/bin/bash") (setq shell-path "/usr/local/bin/bash"))
 	  (t (setq shell-path "/bin/bash")))
     (if (not (get-buffer "*ansi-term*"))
