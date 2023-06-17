@@ -3,7 +3,7 @@
 ;; Copyright (C)   2022 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.0.5
+;; Version:    0.0.6
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "27.1") (org "9.5") (org-roam "2.2.2"))
 
@@ -138,15 +138,13 @@
 (defun sf/switch-term-buffer ()
   "Toggle 'ansi-term' buffer and the current buffer."
   (interactive)
-  (let ((shell-path))
-    (cond ((file-symlink-p "~/.nix-profile/bin/fish") (setq shell-path "~/.nix-profile/bin/fish"))
-	  ((file-exists-p "/usr/local/bin/bash") (setq shell-path "/usr/local/bin/bash"))
-	  (t (setq shell-path "/bin/bash")))
-    (if (not (get-buffer "*ansi-term*"))
-	(ansi-term shell-path)
-      (if (not (eq (current-buffer) (get-buffer "*ansi-term*")))
-	  (switch-to-buffer (get-buffer "*ansi-term*"))
-	(switch-to-buffer (other-buffer))))))
+  (if (not (get-buffer "*ansi-term*"))
+      (ansi-term
+       (seq-find
+	#'file-symlink-p (list (expand-file-name (concat (user-login-name) "/bin/fish") "/etc/profiles/per-user") "/usr/local/bin/bash") "/bin/bash"))
+    (if (not (eq (current-buffer) (get-buffer "*ansi-term*")))
+	(switch-to-buffer (get-buffer "*ansi-term*"))
+      (switch-to-buffer (other-buffer)))))
 
 ;;;###autoload
 (defun sf/kindle-highlight-org-heading ()
