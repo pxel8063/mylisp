@@ -27,9 +27,9 @@
 (describe "tramp-remote-path"
 	  :var ((tramp-default-remote-path 'tramp-default-remote-path))
 	  (it "can build the tramp-remote-path as desired"
-	      (expect (equal (sf/add-nixos-path-to-tramp-remote-path)
+	      (expect (sf/add-nixos-path-to-tramp-remote-path) :to-equal
 (list "/run/current-system/sw/bin" "/nix/var/nix/profiles/default/bin" "/etc/profiles/per-user/cosmic/bin" "/home/cosmic/.nix-profile/bin" "/run/wrappers/bin" "/home/cosmic/.local/bin" tramp-default-remote-path "/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin" "/opt/bin" "/opt/sbin" "/opt/local/bin")
-			       ))))
+			       )))
 
 (ert-deftest addition-test ()
   (should (= 1 1)))
