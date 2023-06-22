@@ -28,6 +28,7 @@
 
 ;;; Code:
 
+(require 'tramp)
 (require 'org-roam)
 (require 'org-roam-dailies)
 
@@ -145,6 +146,14 @@
     (if (not (eq (current-buffer) (get-buffer "*ansi-term*")))
 	(switch-to-buffer (get-buffer "*ansi-term*"))
       (switch-to-buffer (other-buffer)))))
+
+(defun sf/add-nixos-path-to-tramp-remote-path ()
+  (let ((path-to '("/home/cosmic/.local/bin" "/run/wrappers/bin" "/home/cosmic/.nix-profile/bin" "/etc/profiles/per-user/cosmic/bin" "/nix/var/nix/profiles/default/bin" "/run/current-system/sw/bin")))
+    (while path-to
+      (add-to-list 'tramp-remote-path (car path-to))
+      (setq path-to (cdr path-to))))
+  tramp-remote-path)
+
 
 ;;;###autoload
 (defun sf/kindle-highlight-org-heading ()
