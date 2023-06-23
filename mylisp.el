@@ -148,12 +148,10 @@
       (switch-to-buffer (other-buffer)))))
 
 (defun sf/add-nixos-path-to-tramp-remote-path ()
+  "Add NixOS path in front of 'tramp-remote-path."
   (let ((path-to '("/home/cosmic/.local/bin" "/run/wrappers/bin" "/home/cosmic/.nix-profile/bin" "/etc/profiles/per-user/cosmic/bin" "/nix/var/nix/profiles/default/bin" "/run/current-system/sw/bin")))
-    (while path-to
-      (add-to-list 'tramp-remote-path (car path-to))
-      (setq path-to (cdr path-to))))
+    (mapcar #'(lambda (x) (add-to-list 'tramp-remote-path x)) path-to))
   tramp-remote-path)
-
 
 ;;;###autoload
 (defun sf/kindle-highlight-org-heading ()
