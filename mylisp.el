@@ -147,10 +147,11 @@
 	(switch-to-buffer (get-buffer "*ansi-term*"))
       (switch-to-buffer (other-buffer)))))
 
+;;;###autoload
 (defun sf/add-nixos-path-to-tramp-remote-path ()
   "Add NixOS path in front of 'tramp-remote-path."
   (let ((path-to '("/home/cosmic/.local/bin" "/run/wrappers/bin" "/home/cosmic/.nix-profile/bin" "/etc/profiles/per-user/cosmic/bin" "/nix/var/nix/profiles/default/bin" "/run/current-system/sw/bin")))
-    (mapcar #'(lambda (x) (add-to-list 'tramp-remote-path x)) path-to))
+    (mapc #'(lambda (x) (add-to-list 'tramp-remote-path x)) path-to))
   tramp-remote-path)
 
 ;;;###autoload
