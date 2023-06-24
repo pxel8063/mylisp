@@ -5,7 +5,7 @@
 ;; Author:     pxel8063 <pxel8063@gmail.com>
 ;; Version:    0.0.7
 ;; Keywords:   lisp
-;; Package-Requires: ((emacs "27.1") (org "9.5") (org-roam "2.2.2"))
+;; Package-Requires: ((emacs "27.1") (org "9.6.6") (dash "2.19.1") (emacsql "3.1.1") (emacsql-sqlite "3.1.1") (magit-section "3.3.0") (org-roam "2.2.2"))
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
