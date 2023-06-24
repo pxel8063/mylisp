@@ -1,11 +1,12 @@
 ;;; mylisp.el --- My lisp functions  -*- lexical-binding: t -*-
 
-;; Copyright (C)   2022 pxel8063
+;; Copyright (C)   2023 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.0.7
+;; Version:    0.1.0
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "27.1") (org "9.5") (org-roam "2.2.2"))
+;; URL:        https://github.com/pxel8063/mylisp
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -32,57 +33,57 @@
 (require 'org-roam)
 (require 'org-roam-dailies)
 
-(defvar sf/org-roam-agenda-files-store nil "Store org-agenda-files to restore later.")
+(defvar mylisp-org-roam-agenda-files-store nil "Store org-agenda-files to restore later.")
 
-(defun sf/org-roam-filter-by-tag (tag-name)
+(defun mylisp-org-roam-filter-by-tag (tag-name)
   "Filter org-roam-node by TAG-NAME."
   (lambda (node)
     (member tag-name (org-roam-node-tags node))))
 
-(defun sf/org-roam-list-notes-by-tag (tag-name)
+(defun mylisp-org-roam-list-notes-by-tag (tag-name)
   "Return the file names which contain org-roam TAG-NAME)."
   (delete-dups
    (mapcar #'org-roam-node-file
 	   (seq-filter
-	    (sf/org-roam-filter-by-tag tag-name)
+	    (mylisp-org-roam-filter-by-tag tag-name)
 	    (org-roam-node-list)))))
 
-(defconst sf/org-roam-filter-time-range 1209600 "Include the roam nodes for four weeks.")
+(defconst mylisp-org-roam-filter-time-range 1209600 "Include the roam nodes for four weeks.")
 
 
-(defun sf/org-roam-filter-by-mtime ()
+(defun mylisp-org-roam-filter-by-mtime ()
   "Filter org-roam-node by mtime."
   (lambda (node)
     (let (ret)
       (setq ret (org-roam-node-file-mtime node))
-      (if (time-less-p ret (time-subtract (current-time) sf/org-roam-filter-time-range))
+      (if (time-less-p ret (time-subtract (current-time) mylisp-org-roam-filter-time-range))
 	  (setq ret nil)
 	ret))))
 
 
-(defun sf/org-roam-list-notes-by-mtime()
+(defun mylisp-org-roam-list-notes-by-mtime()
   "Return the file names which are mtime is greter than specific date."
   (delete-dups
    (mapcar #'org-roam-node-file
 	   (seq-filter
-	    (sf/org-roam-filter-by-mtime)
+	    (mylisp-org-roam-filter-by-mtime)
 	    (org-roam-node-list)))))
 
 
 ;;;###autoload
-(defun sf/org-roam-refresh-agenda-list ()
+(defun mylisp-org-roam-refresh-agenda-list ()
   "Over write org-agenda-files to org-roam nodes."
   (interactive)
-  (setq org-agenda-files (sf/org-roam-list-notes-by-tag "Project")))
+  (setq org-agenda-files (mylisp-org-roam-list-notes-by-tag "Project")))
 
 ;;;###autoload
-(defun sf/org-roam-refresh-agenda-list-by-all-roam-files ()
+(defun mylisp-org-roam-refresh-agenda-list-by-all-roam-files ()
   "Over write org-agenda-files to org-roam nodes."
   (interactive)
-  (setq org-agenda-files (sf/org-roam-list-notes-by-mtime)))
+  (setq org-agenda-files (mylisp-org-roam-list-notes-by-mtime)))
 
 ;;;###autoload
-(defun sf/org-roam-copy-note-to-daily ()
+(defun mylisp-org-roam-copy-note-to-daily ()
   "Refile entry with an inactive timestamp to a daily on that date."
   (interactive)
   (let ((org-refile-keep nil)
@@ -108,35 +109,35 @@
       (org-refile nil nil (list nil today-file nil pos)))))
 
 ;;;###autoload
-(defun sf/org-roam-toggle-agenda-files ()
+(defun mylisp-org-roam-toggle-agenda-files ()
   "Toggle org-agenda-files."
   (interactive)
-  (unless sf/org-roam-agenda-files-store
-    (setq sf/org-roam-agenda-files-store org-agenda-files))
-  (if (eq sf/org-roam-agenda-files-store org-agenda-files)
+  (unless mylisp-org-roam-agenda-files-store
+    (setq mylisp-org-roam-agenda-files-store org-agenda-files))
+  (if (eq mylisp-org-roam-agenda-files-store org-agenda-files)
       (setq org-agenda-files
-	    (append org-agenda-files (sf/org-roam-list-notes-by-tag "journal")))
-    (setq org-agenda-files sf/org-roam-agenda-files-store)))
+	    (append org-agenda-files (mylisp-org-roam-list-notes-by-tag "journal")))
+    (setq org-agenda-files mylisp-org-roam-agenda-files-store)))
 
 ;;;###autoload
-(defun sf/org-roam-toggle-agenda-files-mtime ()
+(defun mylisp-org-roam-toggle-agenda-files-mtime ()
   "Toggle org-agenda-files."
   (interactive)
-  (unless sf/org-roam-agenda-files-store
-    (setq sf/org-roam-agenda-files-store org-agenda-files))
-  (if (eq sf/org-roam-agenda-files-store org-agenda-files)
+  (unless mylisp-org-roam-agenda-files-store
+    (setq mylisp-org-roam-agenda-files-store org-agenda-files))
+  (if (eq mylisp-org-roam-agenda-files-store org-agenda-files)
       (setq org-agenda-files
-	    (append org-agenda-files (sf/org-roam-list-notes-by-mtime)))
-    (setq org-agenda-files sf/org-roam-agenda-files-store)))
+	    (append org-agenda-files (mylisp-org-roam-list-notes-by-mtime)))
+    (setq org-agenda-files mylisp-org-roam-agenda-files-store)))
 
 ;;;###autoload
-(defun sf/myconfig ()
+(defun mylisp-myconfig ()
   "Invoke 'find-file' init.el."
   (interactive)
   (find-file (locate-user-emacs-file "init.el")))
 
 ;;;###autoload
-(defun sf/switch-term-buffer ()
+(defun mylisp-switch-term-buffer ()
   "Toggle 'ansi-term' buffer and the current buffer."
   (interactive)
   (if (not (get-buffer "*ansi-term*"))
@@ -148,14 +149,14 @@
       (switch-to-buffer (other-buffer)))))
 
 ;;;###autoload
-(defun sf/add-nixos-path-to-tramp-remote-path ()
+(defun mylisp-add-nixos-path-to-tramp-remote-path ()
   "Add NixOS path in front of 'tramp-remote-path."
   (let ((path-to '("/home/cosmic/.local/bin" "/run/wrappers/bin" "/home/cosmic/.nix-profile/bin" "/etc/profiles/per-user/cosmic/bin" "/nix/var/nix/profiles/default/bin" "/run/current-system/sw/bin")))
     (mapc #'(lambda (x) (add-to-list 'tramp-remote-path x)) path-to))
   tramp-remote-path)
 
 ;;;###autoload
-(defun sf/kindle-highlight-org-heading ()
+(defun mylisp-kindle-highlight-org-heading ()
   "Convert kindle highlight to org heading."
   (interactive)
   (save-excursion
@@ -165,21 +166,21 @@
 	(org-toggle-heading 2))
       (message "Done"))))
 
-(defun sf/insert-new-todo-heading-with-page (headline counter)
+(defun mylisp-insert-new-todo-heading-with-page (headline counter)
   "Insert a new todo-heading with HEADLINE as a head line and with page COUNTER."
   (let (tmpheadline)
     (setq tmpheadline (concat headline " p" (number-to-string counter)))
     (org-insert-todo-heading '(16))
     (insert-before-markers tmpheadline)))
 
-(defun sf/insert-new-todo-heading-with-page-count (arg)
+(defun mylisp-insert-new-todo-heading-with-page-count (arg)
   "Insert a new todo-heading which is read from minibuffer.
 The number of todo item is determind by \\[universal-argument] number, ARG"
   (interactive "P")
   (let ((item (read-from-minibuffer "Headline: "))
 	(count 1))
     (while (<= count arg)
-      (sf/insert-new-todo-heading-with-page item count)
+      (mylisp-insert-new-todo-heading-with-page item count)
       (setq count (+ count 1)))))
 
 (provide 'mylisp)
