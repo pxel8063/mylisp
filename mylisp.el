@@ -131,9 +131,9 @@
 
 ;;;###autoload
 (defun sf/myconfig ()
-  "Invoke 'find-file' ~/.emacs.d/init.el."
+  "Invoke 'find-file' init.el."
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (find-file (locate-user-emacs-file "init.el")))
 
 ;;;###autoload
 (defun sf/switch-term-buffer ()
