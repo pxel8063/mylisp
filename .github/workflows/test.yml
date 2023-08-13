@@ -30,10 +30,11 @@ jobs:
     - name: Download cache by .eldev
       uses: actions/download-artifact@v3
 
+    - name: Compile the project
+      run: eldev compile --set all --warnings-as-errors
+
     - name: Test the project
-      run: |
-        eldev -p -dtT -C test
-        eldev -dtT -C compile --set all --warnings-as-errors
+      run: eldev test
 
     - name: Archive .eldev artifacts
       uses: actions/upload-artifact@v3
