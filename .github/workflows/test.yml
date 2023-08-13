@@ -27,7 +27,15 @@ jobs:
     - name: Check out the source code
       uses: actions/checkout@v2
 
+    - name: Download cache by .eldev
+      uses: actions/download-artifact@v3
+
     - name: Test the project
       run: |
         eldev -p -dtT -C test
         eldev -dtT -C compile --set all --warnings-as-errors
+
+    - name: Archive .eldev artifacts
+      uses: actions/upload-artifact@v3
+      with:
+          name: eldev-cache
