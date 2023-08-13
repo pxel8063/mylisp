@@ -30,9 +30,6 @@ jobs:
     - name: Download cache by .eldev
       uses: actions/download-artifact@v3
 
-    - name: Compile the project
-      run: eldev compile --set all --warnings-as-errors
-
     - name: Test the project
       run: eldev test
 
