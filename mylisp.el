@@ -3,7 +3,7 @@
 ;; Copyright (C)   2023 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.1.0
+;; Version:    0.1.1
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "27.1") (org "9.5") (org-roam "2.2.2"))
 ;; URL:        https://github.com/pxel8063/mylisp
@@ -147,6 +147,20 @@
     (if (not (eq (current-buffer) (get-buffer "*ansi-term*")))
 	(switch-to-buffer (get-buffer "*ansi-term*"))
       (switch-to-buffer (other-buffer)))))
+
+(defun buffer-mode (buffer-or-string)
+  "Returns the major mode of BUFFER-OR-STRING"
+  (with-current-buffer buffer-or-string
+    major-mode))
+
+;;;###autoload
+(defun mylisp-switch-haskell-inferior-buffer ()
+  "Toggle '' buffer and the current buffer."
+  (interactive)
+  (let ((current-mode (buffer-mode (current-buffer))))
+     (if (string= "haskell-interactive-mode" current-mode)
+	 (switch-to-buffer (other-buffer))
+       (haskell-interactive-bring))))
 
 ;;;###autoload
 (defun mylisp-add-nixos-path-to-tramp-remote-path ()
