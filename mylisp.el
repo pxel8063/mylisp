@@ -157,10 +157,12 @@
 (defun mylisp-switch-haskell-inferior-buffer ()
   "Toggle '' buffer and the current buffer."
   (interactive)
-  (let ((current-mode (buffer-mode (current-buffer))))
-     (if (string= "haskell-interactive-mode" current-mode)
-	 (switch-to-buffer (other-buffer))
-       (haskell-interactive-bring))))
+  (let* ((current-mode (buffer-mode (current-buffer)))
+	 (haskell-buffer (if (string= "haskell-interactive-mode" current-mode)
+			     (current-buffer))))
+    (if (and (not (string= "haskell-mode" current-mode)) haskell-buffer)
+	(switch-to-prev-buffer)
+      (switch-to-buffer haskell-buffer))))
 
 ;;;###autoload
 (defun mylisp-add-nixos-path-to-tramp-remote-path ()
