@@ -141,9 +141,7 @@
   "Toggle 'ansi-term' buffer and the current buffer."
   (interactive)
   (if (not (get-buffer "*ansi-term*"))
-      (ansi-term
-       (seq-find
-	#'file-symlink-p (list (expand-file-name (concat (user-login-name) "/bin/fish") "/etc/profiles/per-user") "/usr/local/bin/bash") "/bin/bash"))
+      (ansi-term "fish")
     (if (not (eq (current-buffer) (get-buffer "*ansi-term*")))
 	(switch-to-buffer (get-buffer "*ansi-term*"))
       (switch-to-buffer (other-buffer)))))
