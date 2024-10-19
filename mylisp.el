@@ -34,16 +34,17 @@
 (require 'org-roam-dailies)
 
 (defvar mylisp-organization-task-id nil
-    "The id property of the default task heading")
+  "The id property of the default task heading.")
 
 (defun mylisp-clock-in-default-task (task-id)
+  "Clock in org heading with TASK-ID."
   (save-excursion
     (org-with-point-at (org-id-find task-id 'marker)
       (org-clock-in '(16)))))
 
 (defun mylisp-clock-in-organization-task-as-default ()
-  "Clock in the organization task, which is defined by
- `mylisp-organization-task-id'."
+  "Clock in the organization task.
+The task is defined by `mylisp-organization-task-id'."
   (interactive)
   (if mylisp-organization-task-id
       (mylisp-clock-in-default-task mylisp-organization-task-id))
@@ -162,8 +163,8 @@
 	(switch-to-buffer (get-buffer "*ansi-term*"))
       (switch-to-buffer (other-buffer)))))
 
-(defun buffer-mode (buffer-or-string)
-  "Returns the major mode of BUFFER-OR-STRING"
+(defun mylisp-buffer-mode (buffer-or-string)
+  "Return the major mode of BUFFER-OR-STRING."
   (with-current-buffer buffer-or-string
     major-mode))
 
@@ -171,7 +172,7 @@
 (defun mylisp-switch-haskell-inferior-buffer ()
   "Toggle buffer and the current buffer."
   (interactive)
-  (let* ((current-mode (buffer-mode (current-buffer)))
+  (let* ((current-mode (mylisp-buffer-mode (current-buffer)))
 	 (haskell-buffer (if (string= "haskell-interactive-mode" current-mode)
 			     (current-buffer))))
     (if (and (not (string= "haskell-mode" current-mode)) haskell-buffer)
