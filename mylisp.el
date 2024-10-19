@@ -1,11 +1,11 @@
 ;;; mylisp.el --- My lisp functions  -*- lexical-binding: t -*-
 
-;; Copyright (C)   2023 pxel8063
+;; Copyright (C)   2024 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.1.1
+;; Version:    0.2.0
 ;; Keywords:   lisp
-;; Package-Requires: ((emacs "27.1") (org "9.5") (org-roam "2.2.2"))
+;; Package-Requires: ((emacs "28.1") (org "9.5") (org-roam "2.2.2"))
 ;; URL:        https://github.com/pxel8063/mylisp
 
 ;; This program is free software; you can redistribute it and/or
