@@ -132,13 +132,13 @@
 
 ;;;###autoload
 (defun mylisp-myconfig ()
-  "Invoke 'find-file' init.el."
+  "Invoke `find-file' init.el."
   (interactive)
   (find-file (locate-user-emacs-file "init.el")))
 
 ;;;###autoload
 (defun mylisp-switch-term-buffer ()
-  "Toggle 'ansi-term' buffer and the current buffer."
+  "Toggle `ansi-term' buffer and the current buffer."
   (interactive)
   (if (not (get-buffer "*ansi-term*"))
       (ansi-term "fish")
@@ -153,7 +153,7 @@
 
 ;;;###autoload
 (defun mylisp-switch-haskell-inferior-buffer ()
-  "Toggle '' buffer and the current buffer."
+  "Toggle buffer and the current buffer."
   (interactive)
   (let* ((current-mode (buffer-mode (current-buffer)))
 	 (haskell-buffer (if (string= "haskell-interactive-mode" current-mode)
