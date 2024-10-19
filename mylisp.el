@@ -42,7 +42,8 @@
       (org-clock-in '(16)))))
 
 (defun mylisp-clock-in-organization-task-as-default ()
-  "Clock in the organization task, which is defined by `mylisp-organization-task-id'."
+  "Clock in the organization task, which is defined by
+ `mylisp-organization-task-id'."
   (interactive)
   (if mylisp-organization-task-id
       (mylisp-clock-in-default-task mylisp-organization-task-id))
