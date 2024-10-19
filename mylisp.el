@@ -29,7 +29,6 @@
 
 ;;; Code:
 
-(require 'tramp)
 (require 'org-roam)
 (require 'org-roam-dailies)
 
@@ -161,13 +160,6 @@
     (if (and (not (string= "haskell-mode" current-mode)) haskell-buffer)
 	(switch-to-prev-buffer)
       (switch-to-buffer haskell-buffer))))
-
-;;;###autoload
-(defun mylisp-add-nixos-path-to-tramp-remote-path ()
-  "Add NixOS path in front of `tramp-remote-path'."
-  (let ((path-to '("/home/cosmic/.local/bin" "/run/wrappers/bin" "/home/cosmic/.nix-profile/bin" "/etc/profiles/per-user/cosmic/bin" "/nix/var/nix/profiles/default/bin" "/run/current-system/sw/bin")))
-    (mapc #'(lambda (x) (add-to-list 'tramp-remote-path x)) path-to))
-  tramp-remote-path)
 
 ;;;###autoload
 (defun mylisp-kindle-highlight-org-heading ()
