@@ -27,5 +27,9 @@
 (ert-deftest addition-test ()
   (should (= 1 1)))
 
+(describe "clock-in functions"
+	  (it "default task id nil"
+	      (expect (mylisp-clock-in-organization-task-as-default) :to-throw)))
+
 (provide 'mylisp-test)
 ;;; mylisp-test.el ends here

@@ -29,8 +29,24 @@
 
 ;;; Code:
 
+(require 'org)
 (require 'org-roam)
 (require 'org-roam-dailies)
+
+(defvar mylisp-organization-task-id nil
+    "The id property of the default task heading")
+
+(defun mylisp-clock-in-default-task (task-id)
+  (save-excursion
+    (org-with-point-at (org-id-find task-id 'marker)
+      (org-clock-in '(16)))))
+
+(defun mylisp-clock-in-organization-task-as-default ()
+  "Clock in the organization task, which is defined by `mylisp-organization-task-id'."
+  (interactive)
+  (if mylisp-organization-task-id
+      (mylisp-clock-in-default-task mylisp-organization-task-id))
+  (error "set mylisp-organization-task-id"))
 
 (defvar mylisp-org-roam-agenda-files-store nil "Store org-agenda-files to restore later.")
 
