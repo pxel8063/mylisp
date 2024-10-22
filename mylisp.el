@@ -47,8 +47,8 @@
 The task is defined by `mylisp-organization-task-id'."
   (interactive)
   (if mylisp-organization-task-id
-      (mylisp-clock-in-default-task mylisp-organization-task-id))
-  (error "set mylisp-organization-task-id"))
+      (mylisp-clock-in-default-task mylisp-organization-task-id)
+    (error "set mylisp-organization-task-id")))
 
 (defvar mylisp-org-roam-agenda-files-store nil "Store org-agenda-files to restore later.")
 
