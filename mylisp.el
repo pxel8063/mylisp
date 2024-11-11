@@ -60,7 +60,7 @@ The task is defined by `mylisp-break-task-id'."
   (interactive)
   (if mylisp-break-task-id
       (mylisp-clock-in-task mylisp-break-task-id)
-    (error "set mylisp-break-task-id")))
+    (error "Error: set mylisp-break-task-id")))
 
 
 (defun mylisp-clock-in-organization-task-as-default ()
@@ -69,7 +69,7 @@ The task is defined by `mylisp-default-task-id'."
   (interactive)
   (if mylisp-default-task-id
       (mylisp-clock-in-task mylisp-default-task-id)
-    (error "set mylisp-default-task-id")))
+    (error "Error: set mylisp-default-task-id")))
 
 (defvar mylisp-org-roam-agenda-files-store nil "Store org-agenda-files to restore later.")
 
