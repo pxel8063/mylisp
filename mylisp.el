@@ -42,22 +42,34 @@ Be careful!"
 			   (assoc "ssh" tramp-methods)))
               :test #'equal))
 
-(defvar mylisp-organization-task-id nil
-  "The id property of the default task heading.")
+(defvar mylisp-default-task-id nil
+  "The id org property of the default task heading.")
 
-(defun mylisp-clock-in-default-task (task-id)
+(defvar mylisp-break-task-id nil
+  "The id org property of the break heading.")
+
+(defun mylisp-clock-in-task (task-id)
   "Clock in org heading with TASK-ID."
   (save-excursion
     (org-with-point-at (org-id-find task-id 'marker)
       (org-clock-in '(16)))))
 
+(defun mylisp-clock-in-break-task-as-default ()
+  "Clock in the break task.
+The task is defined by `mylisp-break-task-id'."
+  (interactive)
+  (if mylisp-break-task-id
+      (mylisp-clock-in-task mylisp-break-task-id)
+    (error "set mylisp-break-task-id")))
+
+
 (defun mylisp-clock-in-organization-task-as-default ()
   "Clock in the organization task.
-The task is defined by `mylisp-organization-task-id'."
+The task is defined by `mylisp-default-task-id'."
   (interactive)
-  (if mylisp-organization-task-id
-      (mylisp-clock-in-default-task mylisp-organization-task-id)
-    (error "set mylisp-organization-task-id")))
+  (if mylisp-default-task-id
+      (mylisp-clock-in-task mylisp-default-task-id)
+    (error "set mylisp-default-task-id")))
 
 (defvar mylisp-org-roam-agenda-files-store nil "Store org-agenda-files to restore later.")
 
