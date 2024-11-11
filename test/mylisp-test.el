@@ -31,5 +31,9 @@
 	  (it "default task id nil"
 	      (expect (mylisp-clock-in-organization-task-as-default) :to-throw)))
 
+(describe "clock-in functions"
+	  (it "break task id nil"
+	      (expect (mylisp-clock-in-break-task-as-default) :to-throw)))
+
 (provide 'mylisp-test)
 ;;; mylisp-test.el ends here

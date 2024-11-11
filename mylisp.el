@@ -29,9 +29,18 @@
 
 ;;; Code:
 
+(require 'tramp)
 (require 'org)
 (require 'org-roam)
 (require 'org-roam-dailies)
+
+(defun mylisp-add-ssh-agent-to-tramp ()
+  "Forward agent for ssh connections.
+Be careful!"
+  (cl-pushnew '("-A")
+              (cadr (assoc 'tramp-login-args
+			   (assoc "ssh" tramp-methods)))
+              :test #'equal))
 
 (defvar mylisp-organization-task-id nil
   "The id property of the default task heading.")
