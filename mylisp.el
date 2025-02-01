@@ -3,7 +3,7 @@
 ;; Copyright (C)   2024 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.2.
+;; Version:    0.2.1
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "28.1") (org "9.5") (org-roam "2.2.2"))
 ;; URL:        https://github.com/pxel8063/mylisp
