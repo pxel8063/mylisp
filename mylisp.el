@@ -3,7 +3,7 @@
 ;; Copyright (C)   2024 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.2.0
+;; Version:    0.2.
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "28.1") (org "9.5") (org-roam "2.2.2"))
 ;; URL:        https://github.com/pxel8063/mylisp
@@ -107,6 +107,16 @@ The task is defined by `mylisp-default-task-id'."
 	    (mylisp-org-roam-filter-by-mtime)
 	    (org-roam-node-list)))))
 
+(defun mylisp-find-time-string-from-org-entry (pos)
+  "Find time from string from org entry POS. If found the return the
+encoded time. The order of time search is, first, inactive
+TIMESTAMP, second in the headline as string. If it cannot find, return nil."
+  (let ((x (org-entry-get (point) "TIMESTAMP_IA"))
+    	(y (org-entry-properties (point))))
+    (cond (x (encode-time (org-parse-time-string x)))
+  	  (y (encode-time (append '(0 0 0)
+  				  (nthcdr 3 (parse-time-string (cdr (assoc "ITEM" y)))))))
+  	  (t nil))))
 
 ;;;###autoload
 (defun mylisp-org-roam-refresh-agenda-list ()
@@ -132,14 +142,15 @@ The task is defined by `mylisp-default-task-id'."
         cur
         today-file  ;; buffer-file-name during the capture
         pos)
-    (setq cur (encode-time (org-parse-time-string (org-entry-get (point) "TIMESTAMP_IA"))))
-    (save-window-excursion
-      ;; avoid to recognized as org-roam-node
-      (org-entry-delete (point) "ID")
-      ;; create a capture buffer and set today-file and pos
-      (org-roam-dailies--capture cur t)
-      (setq today-file (buffer-file-name))
-      (setq pos (point)))
+    (setq cur (mylisp-find-time-string-from-org-entry (point)))
+    (when cur
+      (save-window-excursion
+	;; avoid to recognized as org-roam-node
+	(org-entry-delete (point) "ID")
+	;; create a capture buffer and set today-file and pos
+	(org-roam-dailies--capture cur t)
+	(setq today-file (buffer-file-name))
+	(setq pos (point))))
 
     ;; Only refile if the target file is different than the current file
     (unless (equal (file-truename today-file)
