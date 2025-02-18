@@ -34,6 +34,11 @@
 (require 'org-roam)
 (require 'org-roam-dailies)
 
+(defun mylisp-set-ssh-auth-sock ()
+  "Set a selected file name as SSH_AUTH_SOCK environmental variable"
+  (interactive)
+  (setenv "SSH_AUTH_SOCK" (read-file-name "SSH agent socket: " "/tmp/ssh")))
+
 (defun mylisp-add-ssh-agent-to-tramp ()
   "Forward agent for ssh connections.
 Be careful!"
