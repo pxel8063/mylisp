@@ -5,7 +5,7 @@
 ;; Author:     pxel8063 <pxel8063@gmail.com>
 ;; Version:    0.2.1
 ;; Keywords:   lisp
-;; Package-Requires: ((emacs "28.1") (org "9.5") (org-roam "20250111.252"))
+;; Package-Requires: ((emacs "29.1") (org "9.5") (org-roam "20250111.252"))
 ;; URL:        https://github.com/pxel8063/mylisp
 
 ;; This program is free software; you can redistribute it and/or
