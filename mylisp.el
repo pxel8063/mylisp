@@ -116,8 +116,8 @@ The task is defined by `mylisp-default-task-id'."
   "Find time from string from org entry POS. If found the return the
 encoded time. The order of time search is, first, inactive
 TIMESTAMP, second in the headline as string. If it cannot find, return nil."
-  (let ((x (org-entry-get (point) "TIMESTAMP_IA"))
-    	(y (org-entry-properties (point))))
+  (let ((x (org-entry-get pos "TIMESTAMP_IA"))
+    	(y (org-entry-properties pos)))
     (cond (x (encode-time (org-parse-time-string x)))
   	  (y (encode-time (append '(0 0 0)
   				  (nthcdr 3 (parse-time-string (cdr (assoc "ITEM" y)))))))
