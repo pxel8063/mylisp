@@ -53,18 +53,18 @@ Be careful!"
 (defvar mylisp-break-task-id nil
   "The id org property of the break heading.")
 
-(defun mylisp-clock-in-task (task-id)
+(defun mylisp-clock-in-task (task-id arg)
   "Clock in org heading with TASK-ID."
   (save-excursion
     (org-with-point-at (org-id-find task-id 'marker)
-      (org-clock-in '(16)))))
+      (org-clock-in arg))))
 
-(defun mylisp-clock-in-break-task-as-default ()
+(defun mylisp-clock-in-break-task (arg)
   "Clock in the break task.
 The task is defined by `mylisp-break-task-id'."
-  (interactive)
+  (interactive "P")
   (if mylisp-break-task-id
-      (mylisp-clock-in-task mylisp-break-task-id)
+      (mylisp-clock-in-task mylisp-break-task-id arg)
     (error "Error: set mylisp-break-task-id")))
 
 
