@@ -3,7 +3,7 @@
 ;; Copyright (C)   2025 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.2.1
+;; Version:    0.2.2
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "29.1") (org "9.5") (org-roam "20250111.252"))
 ;; URL:        https://github.com/pxel8063/mylisp
@@ -68,12 +68,12 @@ The task is defined by `mylisp-break-task-id'."
     (error "Error: set mylisp-break-task-id")))
 
 
-(defun mylisp-clock-in-organization-task-as-default ()
+(defun mylisp-clock-in-organization-task-as-default (arg)
   "Clock in the organization task.
 The task is defined by `mylisp-default-task-id'."
-  (interactive)
+  (interactive "P")
   (if mylisp-default-task-id
-      (mylisp-clock-in-task mylisp-default-task-id)
+      (mylisp-clock-in-task mylisp-default-task-id arg)
     (error "Error: set mylisp-default-task-id")))
 
 (defvar mylisp-org-roam-agenda-files-store nil "Store org-agenda-files to restore later.")
