@@ -3,7 +3,7 @@
 ;; Copyright (C)   2025 pxel8063
 
 ;; Author:     pxel8063 <pxel8063@gmail.com>
-;; Version:    0.2.3
+;; Version:    0.2.4
 ;; Keywords:   lisp
 ;; Package-Requires: ((emacs "29.1") (org "9.5"))
 ;; URL:        https://github.com/pxel8063/mylisp
@@ -82,6 +82,12 @@ The task is defined by `mylisp-default-task-id'."
   	(switch-to-buffer "*Org Agenda( )*")
         (switch-to-buffer "*Org Agenda*"))
       (delete-other-windows))
+
+(defun mylisp-speed-function ()
+  "Return non-nil when the point is on any start at the
+   beginning of the headline. Used by org-use-speed-commands."
+  (and (looking-at org-outline-regexp)
+       (looking-back "^\**" 128)))
 
 (provide 'mylisp)
 ;;; mylisp.el ends here
