@@ -31,6 +31,7 @@
 
 (require 'tramp)
 (require 'org)
+(require 'org-agenda)
 
 (defun mylisp-set-ssh-auth-sock ()
   "Set a selected file name as SSH_AUTH_SOCK environmental variable"
@@ -73,6 +74,14 @@ The task is defined by `mylisp-default-task-id'."
   (if mylisp-default-task-id
       (mylisp-clock-in-task mylisp-default-task-id arg)
     (error "Error: set mylisp-default-task-id")))
+
+(defun mylisp-show-org-agenda ()
+  "Switch agenda buffer and delete other window."
+      (interactive)
+      (if org-agenda-sticky
+  	(switch-to-buffer "*Org Agenda( )*")
+        (switch-to-buffer "*Org Agenda*"))
+      (delete-other-windows))
 
 (provide 'mylisp)
 ;;; mylisp.el ends here
