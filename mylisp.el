@@ -33,10 +33,19 @@
 (require 'org)
 (require 'org-agenda)
 
+(defgroup mylisp nil
+  "Custom variables of mylisp."
+  :group 'org-roam)
+
+(defcustom mylisp-ssh-socket-directory "/tmp/ssh"
+  "String to specify socket directory."
+  :group 'mylisp
+  :type 'string)
+
 (defun mylisp-set-ssh-auth-sock ()
   "Set a selected file name as SSH_AUTH_SOCK environmental variable"
   (interactive)
-  (setenv "SSH_AUTH_SOCK" (read-file-name "SSH agent socket: " "/tmp/ssh")))
+  (setenv "SSH_AUTH_SOCK" (read-file-name "SSH agent socket: " mylisp-ssh-socket-directory)))
 
 (defun mylisp-add-ssh-agent-to-tramp ()
   "Forward agent for ssh connections.
